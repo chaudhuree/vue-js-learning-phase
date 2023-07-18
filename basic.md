@@ -361,3 +361,26 @@ const app = Vue.createApp({
   },
 });
 ```
+
+## reactive method vs ref method
+
+> reactive method
+
+```js
+<script setup>
+import { ref,reactive } from "vue";
+
+const todo = ref("");
+const anotherTodo=reacive({
+  data: "",
+});
+</script>
+
+<template>
+  <div class="input-wrap">
+    <input type="text" v-model="todo" />
+    <input type="text" v-model="anotherTodo.data" />
+    <button>Create</button>
+  </div>
+</template>
+```
