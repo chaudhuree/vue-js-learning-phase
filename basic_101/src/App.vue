@@ -1,71 +1,49 @@
 <script setup>
-const tasks = [
-  { id: 1, title: "Complete project proposal", status: "In Progress" },
-  { id: 2, title: "Update website content", status: "Completed" },
-  { id: 3, title: "Fix bug in user authentication", status: "In Progress" },
-  { id: 4, title: "Prepare presentation slides", status: "Pending" },
-  { id: 5, title: "Test new feature implementation", status: "In Progress" },
+const persons = [
+  {
+    id: 1,
+    name: "Jane Doe",
+    profilePhoto: "//tailus.io/sources/blocks/classic/preview/images/woman1.jpg",
+    jobTitle: "CEO, Co-Founder",
+  },
+  {
+    id: 2,
+    name: "John Doe",
+    profilePhoto: "//tailus.io/sources/blocks/classic/preview/images/man.jpg",
+    jobTitle: "CTO",
+  },
+  {
+    id: 3,
+    name: "Jessy Doe",
+    profilePhoto: "//tailus.io/sources/blocks/classic/preview/images/woman.jpg",
+    jobTitle: "COO",
+  }
 ];
-
-const person = {
-  name: "John Doe",
-  age: "45",
-  designation: "CTO",
-  email: "john@doe.com",
-};
-//v,k,i
-
-function getCompleteTasks() {
-  return tasks.filter((task) => "Completed" == task.status);
-}
-
-function getTasksInProgress() {
-  // return tasks.filter( task => 'In Progress'==task.status)
-  return tasks.filter(function (task) {
-    return "In Progress" == task.status;
-  });
-}
 </script>
 
 <template>
   <section class="mx-auto container">
-    <section class="mx-auto container space-y-3">
-      <h2>Completed</h2>
-      <div
-        class="p-5 border border-gray-600 text-left"
-        v-for="(task, index) in getCompleteTasks()"
-        :key="index"
-      >
-        {{ task.id }} - {{ task.title }}
+    <div class="py-20 bg-gray-50">
+      <div class="container mx-auto px-6 px-32">
+        <div class="mb-16 text-center">
+          <h2 class="mb-4 text-center text-2xl text-gray-900 font-bold text-4xl">Team Member</h2>
+          <p class="text-gray-600 w-8/12 mx-auto">Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni deleniti veniam laudantium itaque perferendis dolor maxime incidunt voluptatem. </p>
+        </div>
+        <div class="grid gap-12 items-center grid-cols-3">
+          
+          <div class="space-y-4 text-center" v-for="(person,index) in persons" :key="person.id">
+            <!-- dynamic class add -->
+            <img class="mx-auto object-cover rounded-xl w-64" :class="2==person.id?'h-80':'h-64'" :src="person.profilePhoto">
+            <!-- <img class="mx-auto object-cover rounded-xl w-64" :class="1==index?'h-80':'h-64'" :src="person.profilePhoto"> -->
+            <div>
+              <h4 class="text-2xl">{{person.name}}</h4>
+              <span class="block text-sm text-gray-500">{{ person.jobTitle }}</span>
+            </div>
+          </div>
+          
+        </div>
       </div>
-      <h2>In Progress</h2>
-      <div
-        class="p-5 border border-gray-600 text-left"
-        v-for="(task, index) in getTasksInProgress()"
-        :key="index"
-      >
-        {{ task.id }} - {{ task.title }}
-      </div>
-      <!-- combined v-for and v-show -->
-      <h2>Pending</h2>
-      <div
-        class="p-5 border border-gray-600 text-left"
-        v-for="(task, index) in tasks"
-        v-show="'Pending' == task.status"
-        :key="index"
-      >
-        {{ task.id }} - {{ task.title }}
-      </div>
-      <!-- <div class="p-5 border border-gray-600 text-left" v-for="(task, index) in tasks" :key="index">{{ task.id }} - {{task.title}} </div> -->
-      <h2>Object Loop</h2>
-      <div
-        class="p-5 border border-gray-600 text-left"
-        v-for="(value, property, index) in person"
-        :key="property"
-      >
-        {{ property }} = {{ value }}
-      </div>
-    </section>
+    </div>
   </section>
 </template>
 
