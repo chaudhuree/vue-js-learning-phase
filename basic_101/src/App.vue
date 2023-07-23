@@ -1,73 +1,21 @@
 <script setup>
-const bgOrange = "background-color: rgba(251, 146, 60, 1)";
-const bgIndigo = "background-color: rgba(129, 140, 248, 1)";
-const bgGreen = "background-color: rgba(52, 211, 153, 1)";
-
-const bgRed = "background-color: rgba(220, 38, 38, 1)";
-const bgDarkGreen = "background-color: rgba(5, 150, 105, 1)";
-
-const colors = {
-  borderColor: "rgba(20, 184, 166, 1)", //rgba(239, 68, 68,1)
-  // 'border-color': 'rgba(20, 184, 166, 1)', //rgba(239, 68, 68,1)
-  color: "rgba(19, 78, 74, 1)", //rgba(127, 29, 29,1)
-  backgroundColor: "rgba(204, 251, 241, 1)", //rgba(254, 226, 226,1)
-};
-
-const weekday = true;
-const messageType = "error";
-
-if ("error" == messageType) {
-  colors.borderColor = "rgba(239, 68, 68,1)";
-  colors.backgroundColor = "rgba(254, 226, 226,1)";
-  colors.color = "rgba(127, 29, 29,1)";
-}
+const tasks = [
+  "Complete project proposal",
+  "Update website content",
+  "Fix bug in user authentication",
+  "Prepare presentation slides",
+  "Test new feature implementation",
+];
 </script>
 
 <template>
-  <section class="container mx-auto">
-    <h1 class="text-center text-3xl py-12">Class & Style Binding</h1>
-
-    <!-- style binding -->
-    <section class="flex space-x-10">
-      <div class="w-1/3 h-16" :style="bgOrange"></div>
-      <!-- after translation it will become -->
-      <!-- <div class="w-1/3 h-16" style="background-color: rgba(251, 146, 60, 1)"></div> -->
-      <div class="w-1/3 h-16" :style="bgIndigo"></div>
-      <div class="w-1/3 h-16" :style="bgGreen"></div>
-    </section>
-
-    <!-- multiple condition -->
-    <section class="mt-10">
-      <!-- <div class="h-16 flex items-center justify-center text-white" :style="weekday==true?[bgRed,'font-size:20px']:[bgDarkGreen, 'font-size:30px']"> -->
-      <div
-        class="h-16 flex items-center justify-center text-white"
-        :style="[
-          weekday == true ? bgRed : bgDarkGreen,
-          weekday == true ? 'font-size:20px' : 'font-size:30px',
-        ]"
-      >
-        It's a weekday!
-      </div>
-    </section>
-
-    <!-- passing the whole colors object -->
-    <section class="mt-10 hidden">
-      <div class="border-t-4 rounded-b px-4 py-3 shadow-md" :style="colors">
-        <p class="font-bold">Our privacy policy has changed</p>
-        <p class="text-sm">Make sure you know how these changes affect you.</p>
-      </div>
-    </section>
-    <!-- adding extra style with colors object -->
-    <section class="mt-10">
-      <div
-        class="border-t-4 rounded-b px-4 py-3 shadow-md"
-        :style="[colors, 'text-transform:lowercase']"
-      >
-        <p class="font-bold">Our privacy policy has changed</p>
-        <p class="text-sm">Make sure you know how these changes affect you.</p>
-      </div>
+  <section class="mx-auto container">
+    <section class="mx-auto container space-y-3">
+        <div class="p-5 border border-gray-600 text-left" v-for="(task, index) in tasks">{{ index+1 }}. {{task}}</div>
     </section>
   </section>
 </template>
 
-<style scoped></style>
+<style scoped>
+
+</style>
